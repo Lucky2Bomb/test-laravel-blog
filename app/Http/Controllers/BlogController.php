@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BlogController extends Controller
 {
     public function index()
     {
         $categories = Category::orderBy('title')->get();
-        $posts = Post::paginate(4);
+        $posts = Post::orderBy('id', 'desc')->paginate(4);
         return view('pages.index', [
             'posts' => $posts,
             'categories' => $categories
@@ -23,7 +24,7 @@ class BlogController extends Controller
         $categories = Category::orderBy('title')->get();
         $currentCategory = Category::where('slug', $slug)->first();
         return view('pages.index', [
-            'posts' => $currentCategory->posts()->paginate(4),
+            'posts' => $currentCategory->posts()->orderBy('id', 'desc')->paginate(4),
             'categories' => $categories,
             'categoryTitle' => $currentCategory->title
         ]);

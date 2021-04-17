@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8">
     <title>@yield('title')</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
         @yield('content')
     </div>
-    <script src="/js/bootstrap.min.js"></script>
 </body>
 
 </html>
